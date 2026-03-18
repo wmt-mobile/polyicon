@@ -1,6 +1,6 @@
 {
   "name": "polyicon",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "SVG to icon font generator with HTML preview — Fontello-style output for React and web projects.",
   "license": "MIT",
   "type": "commonjs",

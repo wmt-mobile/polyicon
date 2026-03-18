@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] — 2026-03-18
+
+### Added
+- `.gitignore` — excludes `node_modules/` and tmp build dirs
+
+### Changed
+- `svgtofont` upgraded `4.x` → `6.5.1`
+- `fast-xml-parser` upgraded `4.x` → `5.5.6` (fixes CVE-2026-26278)
+- `CHANGELOG.md` included in published npm package via `files` field
+
 ## [0.1.0] — 2026-03-18
 
 ### Added

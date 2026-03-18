@@ -1,0 +1,4 @@
+node_modules/
+.polyicon_tmp/
+.polyicon_tmp_svgs/
+*.tgz
