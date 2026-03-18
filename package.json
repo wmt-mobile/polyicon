@@ -22,7 +22,8 @@
   "files": [
     "bin",
     "src",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "bin": {
     "polyicon": "bin/polyicon.js"
