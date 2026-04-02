@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] — 2026-04-02
+
+### Added
+- Stroke-to-fill conversion (`stroke_to_fill.js`) — stroked SVG paths (e.g. line icons from Figma/Heroicons) are now automatically converted to filled outlines for font generation, with support for round, square, and butt linecaps
+
+### Fixed
+- Unified shape extraction regex to correctly match both self-closing and paired SVG element tags in a single pass — the previous `||` alternation silently dropped closing tags from paired elements
+
 ## [0.1.3] — 2026-04-02
 
 ### Fixed

@@ -9,6 +9,7 @@ const { writeCss } = require("./write_css");
 const { writeFonts } = require("./write_fonts");
 const { writeHtml } = require("./write_html");
 const { writePolyiconConfig } = require("./write_polyicon_config");
+const { convertStrokesToFills } = require("./stroke_to_fill");
 
 async function buildIcons(conf) {
   const svgPath = resolveFromCwd(conf.svg);
@@ -72,19 +73,18 @@ async function buildIcons(conf) {
         /<rect\b[^>]*fill=["'](?:#fff|#ffffff|white)["'][^>]*(?:\/>|>(?:\s*<\/rect>)?)/gi,
         ""
       );
+    // Convert stroke-only paths to filled outlines — font renderers
+    // only understand fills, so stroked paths produce blank glyphs.
+    const converted = convertStrokesToFills(cleaned);
     // Extract all SVG drawing elements — not just <path>.
     // Covers circle, ellipse, rect, polygon, polyline, and line so icons
     // built from basic shapes are no longer silently dropped.
-    const shapeTags =
-      cleaned.match(
-        /<(?:path|circle|ellipse|rect|polygon|polyline|line)\b[^>]*\/?>/gi
-      ) ||
-      cleaned.match(
-        /<(?:path|circle|ellipse|rect|polygon|polyline|line)\b[^>]*>[\s\S]*?<\/(?:path|circle|ellipse|rect|polygon|polyline|line)>/gi
-      );
-    let outputSvg = cleaned;
+    const shapeTags = converted.match(
+      /<(path|circle|ellipse|rect|polygon|polyline|line)\b[^>]*>[\s\S]*?<\/\1>|<(?:path|circle|ellipse|rect|polygon|polyline|line)\b[^>]*\/>/gi
+    );
+    let outputSvg = converted;
     if (shapeTags && shapeTags.length) {
-      const viewBoxMatch = cleaned.match(/viewBox="([^"]+)"/i);
+      const viewBoxMatch = converted.match(/viewBox="([^"]+)"/i);
       const viewBoxAttr = viewBoxMatch ? ` viewBox="${viewBoxMatch[1]}"` : "";
       outputSvg = `<svg xmlns="http://www.w3.org/2000/svg"${viewBoxAttr}>${shapeTags.join(
         ""
