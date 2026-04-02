@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.5] — 2026-04-02
+
+### Fixed
+- Fixed an issue in `stroke-linecap="round"` conversion where inward SVG arcs caused generated icons (like `close.svg`) to render redundantly or blank instead of matching their outline.
+
 ## [0.1.4] — 2026-04-02
 
 ### Added

@@ -61,7 +61,7 @@ function lineToFilledPath(x1, y1, x2, y2, w, linecap) {
 
   if (linecap === "round") {
     // Rectangle + semicircular arcs at each end
-    return `M${p1}L${p2}A${hw} ${hw} 0 0 1 ${p3}L${p4}A${hw} ${hw} 0 0 1 ${p1}Z`;
+    return `M${p1}L${p2}A${hw} ${hw} 0 0 0 ${p3}L${p4}A${hw} ${hw} 0 0 0 ${p1}Z`;
   }
 
   if (linecap === "square") {
